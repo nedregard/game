@@ -27,4 +27,18 @@ class PlayerTest {
         player.moveRight();
         assertEquals(player.getPostion()[0], 385);
     }
+
+    @Test
+    void moveDown() {
+        assertEquals(player.getPostion()[1], 284);
+        player.moveDown();
+        assertEquals(player.getPostion()[1], 285);
+    }
+
+    @Test
+    void moveUp() {
+        assertEquals(player.getPostion()[1], 284);
+        player.moveUp();
+        assertEquals(player.getPostion()[1], 283);
+    }
 }

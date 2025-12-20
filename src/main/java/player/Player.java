@@ -45,6 +45,20 @@ public class Player {
         System.out.println("Player moved right to x=" + x + " y=" + y);
     }
 
+    public void moveUp() {
+        System.out.println("Player.moveUp");
+        y = Math.max(0, y - 1);
+        spriteIndex = (spriteIndex + 1) % sprites.length;
+        System.out.println("Player moved up to x=" + x + " y=" + y);
+    }
+
+    public void moveDown() {
+        System.out.println("Player.moveDown");
+        y = Math.min(600 - playerHeight, y + 1);
+        spriteIndex = (spriteIndex + 1) % sprites.length;
+        System.out.println("Player moved down to x=" + x + " y=" + y);
+    }
+
     public void draw(Graphics2D g2) {
         //System.out.println("Player.draw at x=" + x + " y=" + y);
         g2.drawImage(sprites[spriteIndex], x, y, null);

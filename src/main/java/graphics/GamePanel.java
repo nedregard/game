@@ -108,5 +108,11 @@ public class GamePanel extends JPanel implements Runnable {
         if (keyHandler.rightPressed) {
             player.moveRight();
         }
+        if (keyHandler.downPressed) {
+            player.moveDown();
+        }
+        if (keyHandler.upPressed) {
+            player.moveUp();
+        }
     }
 }

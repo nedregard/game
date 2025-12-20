@@ -6,5 +6,6 @@
 
 ### 0.0.2 - Player orientation
 
-### 0.0.1 - Player movement 
- - b6e5814 - Translate player left/right in 2d space 
+### 0.0.1 - Player movement
+- 4d0aaae - cap FPS
+- b6e5814 - Translate player left/right in 2d space 
