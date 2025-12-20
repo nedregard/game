@@ -1,0 +1,95 @@
+package graphics;
+
+import controls.KeyHandler;
+import player.Player;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class GamePanel extends JPanel implements Runnable {
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
+    public static final int CELL_SIZE = 40;
+    private Player player;
+
+    KeyHandler keyHandler = new KeyHandler();
+    Thread gameThread;
+
+    public GamePanel() {
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setBackground(Color.BLACK);
+        setDoubleBuffered(true);
+        setFocusable(true);
+        this.addKeyListener(keyHandler);
+
+        player = new Player();
+        player.spawn(400, 400);
+
+        startGameThread();
+    }
+
+    private void startGameThread() {
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+
+        // Draw grid
+        g2.setColor(Color.GRAY);
+        for (int x = 0; x < WIDTH; x += CELL_SIZE) {
+            g2.drawLine(x, 0, x, HEIGHT);
+        }
+        for (int y = 0; y < HEIGHT; y += CELL_SIZE) {
+            g2.drawLine(0, y, WIDTH, y);
+        }
+
+        drawSprites(g2);
+        player.draw(g2);
+    }
+
+    private void drawSprites(Graphics2D g2) {
+        drawTree(g2, 0, 0);
+    }
+
+    private void drawTree(Graphics g2, int col, int row) {
+        int x = col * CELL_SIZE;
+        int y = row * CELL_SIZE;
+
+        // Draw trunk
+        int trunkWidth = CELL_SIZE / 6;
+        int trunkHeight = CELL_SIZE / 3;
+        int trunkX = x + (CELL_SIZE - trunkWidth) / 2;
+        int trunkY = y + CELL_SIZE - trunkHeight - 4;
+        g2.setColor(new Color(139, 69, 19)); // Brown
+        g2.fillRect(trunkX, trunkY, trunkWidth, trunkHeight);
+
+        // Draw leaves
+        int leavesWidth = CELL_SIZE - 8;
+        int leavesHeight = CELL_SIZE / 2;
+        int leavesX = x + (CELL_SIZE - leavesWidth) / 2;
+        int leavesY = y + 4;
+        g2.setColor(new Color(34, 139, 34)); // Forest Green
+        g2.fillOval(leavesX, leavesY, leavesWidth, leavesHeight);
+    }
+
+    @Override
+    public void run() {
+        while (gameThread != null) {
+            update();
+            repaint();
+        }
+    }
+
+    private void update() {
+        if (keyHandler.leftPressed) {
+            player.moveLeft();
+        }
+        if (keyHandler.rightPressed) {
+            player.moveRight();
+        }
+    }
+}
