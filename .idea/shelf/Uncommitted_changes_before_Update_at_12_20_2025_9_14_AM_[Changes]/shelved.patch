@@ -1,0 +1,20 @@
+Index: target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+===================================================================
+diff --git a/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst b/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+--- a/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst	
++++ b/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst	
+@@ -1,1 +1,4 @@
++D:\Projects\Game\Game_2\src\main\java\player\Player.java
++D:\Projects\Game\Game_2\src\main\java\controls\KeyHandler.java
++D:\Projects\Game\Game_2\src\main\java\graphics\GamePanel.java
+ D:\Projects\Game\Game_2\src\main\java\Main.java
+Index: target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+===================================================================
+diff --git a/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst b/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+--- a/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst	
++++ b/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst	
+@@ -1,1 +1,4 @@
++controls\KeyHandler.class
+ Main.class
++player\Player.class
++graphics\GamePanel.class
