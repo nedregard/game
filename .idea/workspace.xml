@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7256227b-3787-4979-97c9-b05ab8aa2864" name="Changes" comment="MovingEntity, MovingEntitySpeed, MovingEntityRotation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/MovingEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entities/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/graphics/sprites/player.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/graphics/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graphics/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/player/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/player/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/entities/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +135,7 @@
       <updated>1766185156016</updated>
       <workItem from="1766185157275" duration="66000" />
       <workItem from="1766185240555" duration="16821000" />
-      <workItem from="1766271033932" duration="2560000" />
+      <workItem from="1766271033932" duration="2779000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit, move left/right">
       <created>1766190455409</created>
@@ -191,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1766219074100</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="MovingEntity, MovingEntitySpeed, MovingEntityRotation">
+      <created>1766273612648</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766273612648</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
