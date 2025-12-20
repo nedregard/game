@@ -1,7 +1,7 @@
 package graphics;
 
 import controls.KeyHandler;
-import player.Player;
+import entities.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -103,16 +103,17 @@ public class GamePanel extends JPanel implements Runnable {
 
     private void update() {
         if (keyHandler.leftPressed) {
-            player.moveLeft();
+            player.applyLeftMovement();
         }
         if (keyHandler.rightPressed) {
-            player.moveRight();
+            player.applyRightMovement();
         }
         if (keyHandler.downPressed) {
-            player.moveDown();
+            player.applyDownMovement();
         }
         if (keyHandler.upPressed) {
-            player.moveUp();
+            player.applyUpMovement();
         }
+        player.update();
     }
 }
