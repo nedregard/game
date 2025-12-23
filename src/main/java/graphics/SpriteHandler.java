@@ -49,10 +49,6 @@ public class SpriteHandler {
         }
     }
 
-    private BufferedImage getSprite(BufferedImage spriteSheet, int x, int y, int width, int height) {
-        return spriteSheet.getSubimage(x, y, width, height);
-    }
-
     public BufferedImage rotate(BufferedImage sprite, int angle) {
 
         double rads = Math.toRadians(angle);
@@ -73,10 +69,7 @@ public class SpriteHandler {
         AffineTransform at = new AffineTransform();
         at.translate((newWidth - w) / 2, (newHeight - h) / 2);
 
-        int x = w / 2;
-        int y = h / 2;
-
-        at.rotate(rads, x, y);
+        at.rotate(rads, w / 2, h / 2);
         g2d.setTransform(at);
         g2d.drawImage(sprite, 0, 0, null);
         g2d.dispose();
