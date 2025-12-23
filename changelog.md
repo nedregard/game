@@ -3,6 +3,8 @@
 ### 0.0.4 - Firing projectile
 
 ### 0.0.3 - Sprite and movement handling
+- d5038f0 - Clamp position to game world
+- 3e47d01 - Added SpriteManager
 - c5fc4ea - Added SpriteHandler
 
 ### 0.0.2 - Player orientation - COMPLETED
