@@ -9,16 +9,20 @@ public class MovingEntity {
     private final int maxSpeed;
     private final int angleCount;
     private final int spriteCount;
+    private final int worldWidth;
+    private final int worldHeight;
     private int[] position = {0, 0};
     protected int[] speeds = {0, 0};
     protected int angle;
     private int spriteIndex;
     private SpriteHandler spriteHandler;
 
-    public MovingEntity(int width, int height, int maxSpeed, String spriteFile, int spriteCount, int angleCount) {
+    public MovingEntity(int width, int height, int worldWidth, int worldHeight, int maxSpeed, String spriteFile, int spriteCount, int angleCount) {
         this.maxSpeed = maxSpeed;
         this.angleCount = angleCount;
         this.spriteCount = spriteCount;
+        this.worldWidth = worldWidth - width;
+        this.worldHeight = worldHeight - height;
         spriteHandler = SpriteManager.get(
             "player",
             "player.png",
@@ -94,10 +98,17 @@ public class MovingEntity {
             }
         }
 
+        position[0] = clamp(position[0], worldWidth);
+        position[1] = clamp(position[1], worldHeight);
+
         if (moved) {
             spriteIndex = (spriteIndex + 1) % spriteCount;
         } else {
             this.spriteIndex = 0;
         }
+    }
+
+    private int clamp(int value, int max) {
+        return Math.max(0, Math.min(value, max));
     }
 }

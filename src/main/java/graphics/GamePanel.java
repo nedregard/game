@@ -22,7 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
         setFocusable(true);
         this.addKeyListener(keyHandler);
 
-        player = new Player();
+        player = new Player(WIDTH, HEIGHT);
         player.spawn(400, 400);
 
         startGameThread();

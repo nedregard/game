@@ -3,8 +3,8 @@ package entities;
 public class Player extends MovingEntity {
     private int health;
 
-    public Player() {
-        super(32, 32, 5, "player.png", 3, 8);
+    public Player(int worldWidth, int worldHeight) {
+        super(32, 32, worldWidth, worldHeight, 5, "player.png", 3, 8);
         this.health = 100;
     }
 
