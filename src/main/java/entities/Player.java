@@ -9,7 +9,7 @@ public class Player extends MovingEntity {
     //private int spriteIndex;
 
     public Player() {
-        super(32, 32, 5, "player.png");
+        super(32, 32, 5, "player.png", 3, 8);
         this.health = 100;
     }
 
