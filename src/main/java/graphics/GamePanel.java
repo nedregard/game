@@ -12,7 +12,6 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int CELL_SIZE = 40;
     public static final int FPS = 60;
     private Player player;
-
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
 

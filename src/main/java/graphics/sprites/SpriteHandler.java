@@ -1,4 +1,4 @@
-package graphics;
+package graphics.sprites;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -9,21 +9,24 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class SpriteHandler {
-    BufferedImage[][] sprites;
+    private final BufferedImage[][] sprites;
     private final int width;
     private final int height;
     private final int spriteCount;
     private final int angleCount;
 
-    public SpriteHandler(int width, int height, int spriteCount, int angleCount) {
+    public SpriteHandler(String spriteFile, int width, int height, int spriteCount, int angleCount) {
         this.width = width;
         this.height = height;
         this.spriteCount = spriteCount;
         this.angleCount = angleCount;
         sprites = new BufferedImage[spriteCount][angleCount];
+        loadSprites(spriteFile);
+        precomputeRotations();
     }
 
-    public void loadSprites(String spriteFile) {
+    private void loadSprites(String spriteFile) {
+        System.out.println("loadSprites");
         URL url = getClass().getResource("/graphics/sprites/" + spriteFile);
         if (url == null) {
             throw new IllegalStateException("Sprite not found: " + spriteFile);
@@ -34,13 +37,12 @@ public class SpriteHandler {
                 BufferedImage sprite = spriteSheet.getSubimage(i * width, 0, width, height);
                 sprites[i][0] = sprite;
             }
-            rotateSprites();
         } catch (IOException e) {
             System.err.println("Error loading image: " + e.getMessage());
         }
     }
 
-    public void rotateSprites() {
+    private void precomputeRotations() {
         for (int i = 0; i < spriteCount; i++) {
             for (int j = 1; j < angleCount; j++) {
                 int angle = j * (360 / angleCount);
@@ -49,7 +51,7 @@ public class SpriteHandler {
         }
     }
 
-    public BufferedImage rotate(BufferedImage sprite, int angle) {
+    private BufferedImage rotate(BufferedImage sprite, int angle) {
 
         double rads = Math.toRadians(angle);
         double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));

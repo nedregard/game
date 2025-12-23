@@ -2,7 +2,8 @@ package entities;
 
 import java.awt.*;
 
-import graphics.SpriteHandler;
+import graphics.sprites.SpriteHandler;
+import graphics.sprites.SpriteManager;
 
 public class MovingEntity {
     private final int maxSpeed;
@@ -18,8 +19,12 @@ public class MovingEntity {
         this.maxSpeed = maxSpeed;
         this.angleCount = angleCount;
         this.spriteCount = spriteCount;
-        spriteHandler = new SpriteHandler(width, height, spriteCount, angleCount);
-        spriteHandler.loadSprites(spriteFile);
+        spriteHandler = SpriteManager.get(
+            "player",
+            "player.png",
+            width, height,
+            spriteCount, angleCount
+        );
     }
 
     protected void setPosition(int x, int y) {
