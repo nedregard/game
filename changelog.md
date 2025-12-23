@@ -2,7 +2,8 @@
 
 ### 0.0.4 - Firing projectile
 
-### 0.0.3 - Static enemy
+### 0.0.3 - Sprite and movement handling
+- c5fc4ea - Added SpriteHandler
 
 ### 0.0.2 - Player orientation - COMPLETED
 - e4edbe4 - MovingEntity now supports sprite rotation based on movement direction
