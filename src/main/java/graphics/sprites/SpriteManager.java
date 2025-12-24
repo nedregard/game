@@ -10,7 +10,7 @@ public final class SpriteManager {
     public static SpriteHandler get(String key,
                                     String file,
                                     int w, int h,
-                                    int sprites, int angles) {
+                                     int sprites, int angles) {
         return CACHE.computeIfAbsent(key,
             k -> new SpriteHandler(file, w, h, sprites, angles));
     }

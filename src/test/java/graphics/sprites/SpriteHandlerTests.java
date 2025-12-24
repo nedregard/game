@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 
 import org.junit.jupiter.api.Test;
 
-class SpriteHandlerTest {
+class SpriteHandlerTests {
 
     @Test
-    void constructorLoadsAndPrecomputesSprites() {
+    public void constructorLoadsAndPrecomputesSprites() {
         SpriteHandler handler = new SpriteHandler(
             "test.png",
             32, 32,
@@ -33,7 +33,7 @@ class SpriteHandlerTest {
     }
 
     @Test
-    void rotatedSpriteHasDifferentDimensions() {
+    public void rotatedSpriteHasDifferentDimensions() {
         SpriteHandler handler = new SpriteHandler(
             "test.png",
             32, 32,
@@ -56,7 +56,7 @@ class SpriteHandlerTest {
     }
 
     @Test
-    void getSpriteReturnsSameInstance() {
+    public void getSpriteReturnsSameInstance() {
         SpriteHandler handler = new SpriteHandler(
             "test.png",
             32, 32,
@@ -71,7 +71,7 @@ class SpriteHandlerTest {
     }
 
     @Test
-    void invalidSpriteIndexThrowsException() {
+    public void invalidSpriteIndexThrowsException() {
         SpriteHandler handler = new SpriteHandler(
             "test.png",
             32, 32,
@@ -86,7 +86,7 @@ class SpriteHandlerTest {
     }
 
     @Test
-    void invalidAngleIndexThrowsException() {
+    public void invalidAngleIndexThrowsException() {
         SpriteHandler handler = new SpriteHandler(
             "test.png",
             32, 32,
@@ -101,7 +101,7 @@ class SpriteHandlerTest {
     }
 
     @Test
-    void missingSpriteFileThrowsIllegalStateException() {
+    public void missingSpriteFileThrowsIllegalStateException() {
         assertThrows(
             IllegalStateException.class,
             () -> new SpriteHandler(

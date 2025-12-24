@@ -26,7 +26,6 @@ public class SpriteHandler {
     }
 
     private void loadSprites(String spriteFile) {
-        System.out.println("loadSprites");
         URL url = getClass().getResource("/graphics/sprites/" + spriteFile);
         if (url == null) {
             throw new IllegalStateException("Sprite not found: " + spriteFile);

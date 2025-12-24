@@ -9,11 +9,12 @@ public class MovingEntity {
     private final int maxSpeed;
     private final int angleCount;
     private final int spriteCount;
-    private final int worldWidth;
-    private final int worldHeight;
-    private int[] position = {0, 0};
+    protected final int worldWidth;
+    protected final int worldHeight;
+    protected int[] position = {0, 0};
     protected int[] speeds = {0, 0};
     protected int angle;
+    protected int angleIndex;
     private int spriteIndex;
     private SpriteHandler spriteHandler;
 
@@ -58,7 +59,7 @@ public class MovingEntity {
 
     public void draw(Graphics2D g2) {
         angle = calculateAngle();
-        int angleIndex = Math.floorMod(angle, 360) / (360 / angleCount);
+        angleIndex = Math.floorMod(angle, 360) / (360 / angleCount);
         g2.drawImage(spriteHandler.getSprite(spriteIndex, angleIndex), position[0], position[1], null);
     }
 

@@ -1,13 +1,17 @@
 package entities;
 
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player extends MovingEntity {
     private int health;
+    private List<Projectile> projectiles = new ArrayList<>();
 
     public Player(int worldWidth, int worldHeight) {
         super(32, 32, worldWidth, worldHeight, 5, "player.png", 3, 8);
         this.health = 100;
     }
-
 
     public void spawn(int x, int y) {
         setPosition(x, y);
@@ -15,5 +19,29 @@ public class Player extends MovingEntity {
 
     public void update() {
         super.update();
+        updateProjectiles();
+    }
+
+    public void fire() {
+        projectiles.add(new Projectile(position[0], position[1], angleIndex, 10));
+    }
+
+    @Override
+    public void draw(Graphics2D g2) {
+        super.draw(g2);
+        for (Projectile projectile : projectiles) {
+            projectile.draw(g2);
+        }
+    }
+
+    private void updateProjectiles() {
+        List<Projectile> tempProjectiles = new ArrayList<>();
+        for (Projectile projectile : projectiles) {
+            projectile.update();
+            if (!projectile.toDestroy()) {
+                tempProjectiles.add(projectile);
+            }
+        }
+        projectiles = tempProjectiles;
     }
 }

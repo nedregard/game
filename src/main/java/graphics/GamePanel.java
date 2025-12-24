@@ -10,7 +10,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public static final int CELL_SIZE = 40;
-    public static final int FPS = 60;
+    public static final int FPS = 24;
     private Player player;
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
@@ -112,6 +112,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         if (keyHandler.upPressed) {
             player.applyUpMovement();
+        }
+        if (keyHandler.firePressed) {
+            player.fire();
         }
         player.update();
     }
