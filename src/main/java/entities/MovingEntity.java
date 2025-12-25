@@ -4,26 +4,29 @@ import java.awt.*;
 
 import graphics.sprites.SpriteHandler;
 import graphics.sprites.SpriteManager;
+import world.WorldHandler;
 
 public class MovingEntity {
+    private final int width;
+    private final int height;
     private final int maxSpeed;
     private final int angleCount;
     private final int spriteCount;
-    protected final int worldWidth;
-    protected final int worldHeight;
     protected int[] position = {0, 0};
     protected int[] speeds = {0, 0};
     protected int angle;
     protected int angleIndex;
     private int spriteIndex;
     private SpriteHandler spriteHandler;
+    private final WorldHandler world;
 
-    public MovingEntity(int width, int height, int worldWidth, int worldHeight, int maxSpeed, String spriteFile, int spriteCount, int angleCount) {
+    public MovingEntity(int width, int height, int maxSpeed, int spriteCount, int angleCount, WorldHandler world) {
+        this.width = width;
+        this.height = height;
         this.maxSpeed = maxSpeed;
         this.angleCount = angleCount;
         this.spriteCount = spriteCount;
-        this.worldWidth = worldWidth - width;
-        this.worldHeight = worldHeight - height;
+        this.world = world;
         spriteHandler = SpriteManager.get(
             "player",
             "player.png",
@@ -86,30 +89,41 @@ public class MovingEntity {
 
     public void update() {
         boolean moved = false;
-        for (int i = 0; i < speeds.length; i++) {
-            int speed = speeds[i];
-            if (speed > 0) {
+
+        if (speeds[0] != 0) {
+            int nextX = position[0] + speeds[0];
+
+            if (canMoveTo(nextX, position[1])) {
+                position[0] = nextX;
                 moved = true;
-                position[i] += speed;
-                speeds[i] = speed - 1;
-            } else if (speed < 0) {
-                moved = true;
-                position[i] += speed;
-                speeds[i] = speed + 1;
             }
+
+            speeds[0] += (speeds[0] > 0) ? -1 : 1;
         }
 
-        position[0] = clamp(position[0], worldWidth);
-        position[1] = clamp(position[1], worldHeight);
+        if (speeds[1] != 0) {
+            int nextY = position[1] + speeds[1];
 
-        if (moved) {
-            spriteIndex = (spriteIndex + 1) % spriteCount;
-        } else {
-            this.spriteIndex = 0;
+            if (canMoveTo(position[0], nextY)) {
+                position[1] = nextY;
+                moved = true;
+            }
+
+            speeds[1] += (speeds[1] > 0) ? -1 : 1;
         }
+
+        spriteIndex = moved ? (spriteIndex + 1) % spriteCount : 0;
     }
 
-    private int clamp(int value, int max) {
-        return Math.max(0, Math.min(value, max));
+    private boolean canMoveTo(int nextX, int nextY) {
+        int left   = nextX;
+        int right  = nextX + width - 1;
+        int top    = nextY;
+        int bottom = nextY + height - 1;
+        return
+            world.isWalkablePixel(left,  bottom) &&
+            world.isWalkablePixel(right,  bottom) &&
+            world.isWalkablePixel(left,  top) &&
+            world.isWalkablePixel(right, top);
     }
 }

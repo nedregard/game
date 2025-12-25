@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
         worldHandler = new WorldHandler();
         worldHandler.setScene(new Scene("test", 25, 20));
 
-        player = new Player(WIDTH, HEIGHT);
+        player = new Player(worldHandler);
         player.spawn(400, 400);
 
         startGameThread();
@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;
 
         // Draw grid
+        /*
         g2.setColor(Color.GRAY);
         for (int x = 0; x < WIDTH; x += CELL_SIZE) {
             g2.drawLine(x, 0, x, HEIGHT);
@@ -52,6 +53,8 @@ public class GamePanel extends JPanel implements Runnable {
         for (int y = 0; y < HEIGHT; y += CELL_SIZE) {
             g2.drawLine(0, y, WIDTH, y);
         }
+
+         */
 
         worldHandler.getScene().draw(g2);
 

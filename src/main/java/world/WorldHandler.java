@@ -7,6 +7,10 @@ public class WorldHandler {
 
     }
 
+    public boolean isWalkablePixel(int pixelX, int pixelY) {
+        return scene.isWalkablePixel(pixelX, pixelY);
+    }
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }

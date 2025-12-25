@@ -2,11 +2,14 @@ package world;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class WorldHandlerTests {
 
     @Test
-    void testSetAndGetScene() {
+    public void testSetAndGetScene() {
         WorldHandler handler = new WorldHandler();
         assertNull(handler.getScene(), "Initially, scene should be null");
 
@@ -18,7 +21,7 @@ class WorldHandlerTests {
     }
 
     @Test
-    void testOverwriteScene() {
+    public void testOverwriteScene() {
         WorldHandler handler = new WorldHandler();
         Scene scene1 = new Scene("scene1", 5, 5);
         Scene scene2 = new Scene("scene2", 7, 7);
@@ -28,5 +31,15 @@ class WorldHandlerTests {
 
         handler.setScene(scene2);
         assertEquals(scene2, handler.getScene(), "Setter should overwrite previous scene");
+    }
+
+    @Test
+    public void testIsWalkablePixel() {
+        WorldHandler handler = new WorldHandler();
+        Scene scene = mock(Scene.class);
+
+        handler.setScene(scene);
+        handler.isWalkablePixel(0, 0);
+        verify(scene, times(1)).isWalkablePixel(0,0);
     }
 }

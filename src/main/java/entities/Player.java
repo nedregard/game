@@ -4,12 +4,14 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import world.WorldHandler;
+
 public class Player extends MovingEntity {
     private int health;
     private List<Projectile> projectiles = new ArrayList<>();
 
-    public Player(int worldWidth, int worldHeight) {
-        super(32, 32, worldWidth, worldHeight, 5, "player.png", 3, 8);
+    public Player(WorldHandler world) {
+        super(32, 32, 5, 3, 8, world);
         this.health = 100;
     }
 

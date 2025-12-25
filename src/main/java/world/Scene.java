@@ -18,11 +18,25 @@ public class Scene {
         loadTiles(name);
     }
 
+    public boolean isWalkablePixel(int pixelX, int pixelY) {
+        if (pixelX < 0 || pixelY < 0)
+            return false;
+
+        int col = pixelX / 32;
+        int row = pixelY / 32;
+
+        if (col >= width || row >= height) {
+            return false;
+        }
+
+        return tiles[col][row].isWalkable();
+    }
+
     private void loadTiles(String name) {
         //load from text file
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                if (i == 20) {
+                if (i == 20 || i == 5 || j == 5 || j == 15 || (i == 10 && j == 10)) {
                     tiles[i][j] = new Tile(TileType.GRASS, TileObject.STONEBLOCK);
                 } else {
                     tiles[i][j] = new Tile(TileType.GRASS, null);

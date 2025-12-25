@@ -1,7 +1,9 @@
 package world;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -73,5 +75,63 @@ public class SceneTests {
         verify(tile2, times(1)).draw(any(), anyInt(), anyInt());
         verify(tile3, times(1)).draw(any(), anyInt(), anyInt());
         verify(tile4, times(1)).draw(any(), anyInt(), anyInt());
+    }
+
+
+    private Scene getWalkableTestScene() {
+        Scene scene = new Scene("test", 10, 10);
+
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
+                scene.setTile(x, y, TileType.GRASS, null);
+            }
+        }
+
+        scene.setTile(3, 4, TileType.WATER, null);
+        return scene;
+    }
+
+    @Test
+    public void walkablePixelOnGrassReturnsTrue() {
+        Scene scene = getWalkableTestScene();
+        int pixelX = 2 * 32 + 5;
+        int pixelY = 1 * 32 + 10;
+        assertTrue(scene.isWalkablePixel(pixelX, pixelY));
+    }
+
+    @Test
+    public void walkablePixelOnWaterReturnsFalse() {
+        Scene scene = getWalkableTestScene();
+        int pixelX = 3 * 32 + 1;
+        int pixelY = 4 * 32 + 1;
+        assertFalse(scene.isWalkablePixel(pixelX, pixelY));
+    }
+
+    @Test
+    public void negativePixelXReturnsFalse() {
+        Scene scene = getWalkableTestScene();
+        assertFalse(scene.isWalkablePixel(-1, 50));
+    }
+
+    @Test
+    public void negativePixelYReturnsFalse() {
+        Scene scene = getWalkableTestScene();
+        assertFalse(scene.isWalkablePixel(50, -1));
+    }
+
+    @Test
+    public void pixelBeyondWorldWidthReturnsFalse() {
+        Scene scene = getWalkableTestScene();
+        int pixelX = 10 * 32; // exactly outside
+        int pixelY = 5 * 32;
+        assertFalse(scene.isWalkablePixel(pixelX, pixelY));
+    }
+
+    @Test
+    public void pixelBeyondWorldHeightReturnsFalse() {
+        Scene scene = getWalkableTestScene();
+        int pixelX = 5 * 32;
+        int pixelY = 10 * 32;
+        assertFalse(scene.isWalkablePixel(pixelX, pixelY));
     }
 }
