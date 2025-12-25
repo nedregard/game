@@ -2,15 +2,18 @@ package graphics;
 
 import controls.KeyHandler;
 import entities.Player;
+import world.Scene;
+import world.WorldHandler;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
     public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
+    public static final int HEIGHT = 640;
     public static final int CELL_SIZE = 40;
     public static final int FPS = 24;
+    WorldHandler worldHandler;
     private Player player;
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
@@ -21,6 +24,9 @@ public class GamePanel extends JPanel implements Runnable {
         setDoubleBuffered(true);
         setFocusable(true);
         this.addKeyListener(keyHandler);
+
+        worldHandler = new WorldHandler();
+        worldHandler.setScene(new Scene("test", 25, 20));
 
         player = new Player(WIDTH, HEIGHT);
         player.spawn(400, 400);
@@ -46,6 +52,8 @@ public class GamePanel extends JPanel implements Runnable {
         for (int y = 0; y < HEIGHT; y += CELL_SIZE) {
             g2.drawLine(0, y, WIDTH, y);
         }
+
+        worldHandler.getScene().draw(g2);
 
         drawSprites(g2);
         player.draw(g2);
