@@ -1,6 +1,7 @@
 ## 0.1.0 - Kill an enemy
 
 ### 0.0.4 - Firing projectile
+- 271842f - Player firing projectile sprites
 
 ### 0.0.3 - Sprite and movement handling
 - d5038f0 - Clamp position to game world
