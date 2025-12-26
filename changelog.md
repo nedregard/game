@@ -1,3 +1,4 @@
+- <b>26-12-2025 --- 17eebac</b> - Added KeyHandlerTests
 - <b>26-12-2025 --- ffa8d2c</b> - Player colliosion detection
 - <b>25-12-2025 --- 645ac95</b> - Added Tile logic 
 - <b>24-12-2025 --- 271842f</b> - Player firing projectile sprites
