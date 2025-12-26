@@ -1,3 +1,5 @@
+- <b>26-12-2025 --- d723800</b> - Added SceneLoader
+- <b>26-12-2025 --- d723800</b> - Changed to full screen mode
 - <b>26-12-2025 --- 17eebac</b> - Added KeyHandlerTests
 - <b>26-12-2025 --- ffa8d2c</b> - Player colliosion detection
 - <b>25-12-2025 --- 645ac95</b> - Added Tile logic 
