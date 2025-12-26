@@ -1,4 +1,4 @@
-package world;
+package world.scenes;
 
 import java.awt.Graphics2D;
 

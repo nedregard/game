@@ -2,7 +2,7 @@ package graphics;
 
 import controls.KeyHandler;
 import entities.Player;
-import world.Scene;
+import world.scenes.Scene;
 import world.WorldHandler;
 
 import javax.swing.*;
@@ -19,7 +19,6 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     public GamePanel() {
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
         setFocusable(true);
@@ -53,8 +52,12 @@ public class GamePanel extends JPanel implements Runnable {
         for (int y = 0; y < HEIGHT; y += CELL_SIZE) {
             g2.drawLine(0, y, WIDTH, y);
         }
-
          */
+
+        double scaleX = getWidth() / (double) WIDTH; // originalWidth = 800
+        double scaleY = getHeight() / (double) HEIGHT; // originalHeight = 600
+
+        g2.scale(scaleX, scaleY);
 
         worldHandler.getScene().draw(g2);
 

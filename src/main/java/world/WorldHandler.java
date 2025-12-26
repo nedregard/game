@@ -1,5 +1,7 @@
 package world;
 
+import world.scenes.Scene;
+
 public class WorldHandler {
 
     private Scene scene;
