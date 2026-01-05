@@ -11,6 +11,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.awt.Graphics2D;
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,11 +27,11 @@ public class SceneTests {
     Graphics2D g2;
 
     @Test
-    public void sceneInitializesWithCorrectDimensions() {
-        Scene scene = new Scene("test", 50, 30);
+    public void sceneInitializesWithCorrectDimensions() throws IOException {
+        Scene scene = SceneLoader.load("maze");
 
         assertNotNull(scene.getTile(0, 0));
-        assertNotNull(scene.getTile(49, 29));
+        assertNotNull(scene.getTile(23, 31));
     }
 
     @Test
@@ -100,7 +101,7 @@ public class SceneTests {
         Scene scene = getWalkableTestScene();
         int pixelX = 3 * 32 + 1;
         int pixelY = 4 * 32 + 1;
-        assertFalse(scene.isWalkablePixel(pixelX, pixelY));
+        assertFalse(scene.isWalkablePixel(pixelY, pixelX));
     }
 
     @Test
