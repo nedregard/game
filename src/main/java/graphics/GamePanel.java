@@ -4,14 +4,16 @@ import controls.KeyHandler;
 import entities.Player;
 import world.scenes.Scene;
 import world.WorldHandler;
+import world.scenes.SceneLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable {
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 640;
-    public static final int CELL_SIZE = 40;
+    public static final int WIDTH = 1024;
+    public static final int HEIGHT = 768;
+    public static final int CELL_SIZE = 32;
     public static final int FPS = 24;
     WorldHandler worldHandler;
     private Player player;
@@ -25,10 +27,14 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler);
 
         worldHandler = new WorldHandler();
-        worldHandler.setScene(new Scene("test", 25, 20));
+        try {
+            worldHandler.setScene(SceneLoader.load("maze"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         player = new Player(worldHandler);
-        player.spawn(400, 400);
+        player.spawn(0, 0);
 
         startGameThread();
     }
@@ -61,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         worldHandler.getScene().draw(g2);
 
-        drawSprites(g2);
+        //drawSprites(g2);
         player.draw(g2);
     }
 

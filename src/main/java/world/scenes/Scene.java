@@ -14,8 +14,8 @@ public class Scene {
     public Scene(String name, int width, int height) {
         this.width = width;
         this.height = height;
-        tiles = new Tile[width][height];
-        loadTiles(name);
+        tiles = new Tile[height][width];
+        //loadTiles(name);
     }
 
     public boolean isWalkablePixel(int pixelX, int pixelY) {
@@ -29,11 +29,11 @@ public class Scene {
             return false;
         }
 
-        return tiles[col][row].isWalkable();
+        return tiles[row][col].isWalkable();
     }
 
     private void loadTiles(String name) {
-        //load from text file
+
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 if (i == 20 || i == 5 || j == 5 || j == 15 || (i == 10 && j == 10)) {
@@ -58,9 +58,9 @@ public class Scene {
     }
 
     public void draw(Graphics2D g2) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                tiles[i][j].draw(g2, i * 32, j * 32);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                tiles[i][j].draw(g2, j * 32, i * 32);
             }
         }
     }

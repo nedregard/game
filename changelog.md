@@ -1,3 +1,4 @@
+- <b>05-01-2026 --- <.COMMIT></b> - Added MazeGenerator, json test-files
 - <b>26-12-2025 --- d723800</b> - Added SceneLoader
 - <b>26-12-2025 --- d723800</b> - Changed to full screen mode
 - <b>26-12-2025 --- 17eebac</b> - Added KeyHandlerTests
