@@ -88,42 +88,113 @@ public class MovingEntity {
     }
 
     public void update() {
-        boolean moved = false;
+        MoveResult r = moveWithSlide(speeds[0], speeds[1]);
 
+        // X axis
         if (speeds[0] != 0) {
-            int nextX = position[0] + speeds[0];
-
-            if (canMoveTo(nextX, position[1])) {
-                position[0] = nextX;
-                moved = true;
+            if (!r.movedX) {
+                speeds[0] = 0; // hit wall
+            } else {
+                speeds[0] += (speeds[0] > 0) ? -1 : 1;
             }
-
-            speeds[0] += (speeds[0] > 0) ? -1 : 1;
         }
 
+        // Y axis
         if (speeds[1] != 0) {
-            int nextY = position[1] + speeds[1];
-
-            if (canMoveTo(position[0], nextY)) {
-                position[1] = nextY;
-                moved = true;
+            if (!r.movedY) {
+                speeds[1] = 0; // hit wall
+            } else {
+                speeds[1] += (speeds[1] > 0) ? -1 : 1;
             }
-
-            speeds[1] += (speeds[1] > 0) ? -1 : 1;
         }
 
+        boolean moved = r.movedX || r.movedY;
         spriteIndex = moved ? (spriteIndex + 1) % spriteCount : 0;
     }
 
+    private boolean stepMoveWithSlide(int dx, int dy) {
+
+        if (canMoveTo(position[0] + dx, position[1] + dy)) {
+            position[0] += dx;
+            position[1] += dy;
+            return true;
+        }
+
+        if (Math.abs(dx) >= Math.abs(dy)) {
+            if (dx != 0 && canMoveTo(position[0] + dx, position[1])) {
+                position[0] += dx;
+                return true;
+            }
+            if (dy != 0 && canMoveTo(position[0], position[1] + dy)) {
+                position[1] += dy;
+                return true;
+            }
+        } else {
+            if (dy != 0 && canMoveTo(position[0], position[1] + dy)) {
+                position[1] += dy;
+                return true;
+            }
+            if (dx != 0 && canMoveTo(position[0] + dx, position[1])) {
+                position[0] += dx;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private MoveResult moveWithSlide(int dx, int dy) {
+        MoveResult r = new MoveResult();
+
+        int steps = Math.max(Math.abs(dx), Math.abs(dy));
+        int sx = Integer.signum(dx);
+        int sy = Integer.signum(dy);
+
+        for (int i = 0; i < steps; i++) {
+            boolean stepMoved = false;
+
+            // diagonal
+            if (canMoveTo(position[0] + sx, position[1] + sy)) {
+                position[0] += sx;
+                position[1] += sy;
+                r.movedX = r.movedY = true;
+                stepMoved = true;
+            }
+            // slide X
+            else if (sx != 0 && canMoveTo(position[0] + sx, position[1])) {
+                position[0] += sx;
+                r.movedX = true;
+                stepMoved = true;
+            }
+            // slide Y
+            else if (sy != 0 && canMoveTo(position[0], position[1] + sy)) {
+                position[1] += sy;
+                r.movedY = true;
+                stepMoved = true;
+            }
+
+            if (!stepMoved) break;
+        }
+
+        return r;
+    }
+
     private boolean canMoveTo(int nextX, int nextY) {
-        int left   = nextX;
-        int right  = nextX + width - 1;
-        int top    = nextY;
-        int bottom = nextY + height - 1;
-        return
-            world.isWalkablePixel(left,  bottom) &&
-            world.isWalkablePixel(right,  bottom) &&
-            world.isWalkablePixel(left,  top) &&
-            world.isWalkablePixel(right, top);
+        final int margin = 0;
+
+        int left   = nextX + margin;
+        int right  = nextX + width - 1 - margin;
+        int top    = nextY + margin;
+        int bottom = nextY + height - 1 - margin;
+
+        return world.isWalkablePixel(left,  top) &&
+                world.isWalkablePixel(right, top) &&
+                world.isWalkablePixel(left,  bottom) &&
+                world.isWalkablePixel(right, bottom);
+    }
+
+    private static class MoveResult {
+        boolean movedX;
+        boolean movedY;
     }
 }

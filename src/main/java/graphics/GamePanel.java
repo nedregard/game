@@ -2,7 +2,6 @@ package graphics;
 
 import controls.KeyHandler;
 import entities.Player;
-import world.scenes.Scene;
 import world.WorldHandler;
 import world.scenes.SceneLoader;
 
@@ -71,31 +70,6 @@ public class GamePanel extends JPanel implements Runnable {
         player.draw(g2);
     }
 
-    private void drawSprites(Graphics2D g2) {
-        drawTree(g2, 0, 0);
-    }
-
-    private void drawTree(Graphics g2, int col, int row) {
-        int x = col * CELL_SIZE;
-        int y = row * CELL_SIZE;
-
-        // Draw trunk
-        int trunkWidth = CELL_SIZE / 6;
-        int trunkHeight = CELL_SIZE / 3;
-        int trunkX = x + (CELL_SIZE - trunkWidth) / 2;
-        int trunkY = y + CELL_SIZE - trunkHeight - 4;
-        g2.setColor(new Color(139, 69, 19)); // Brown
-        g2.fillRect(trunkX, trunkY, trunkWidth, trunkHeight);
-
-        // Draw leaves
-        int leavesWidth = CELL_SIZE - 8;
-        int leavesHeight = CELL_SIZE / 2;
-        int leavesX = x + (CELL_SIZE - leavesWidth) / 2;
-        int leavesY = y + 4;
-        g2.setColor(new Color(34, 139, 34)); // Forest Green
-        g2.fillOval(leavesX, leavesY, leavesWidth, leavesHeight);
-    }
-
     @Override
     public void run() {
 
@@ -121,6 +95,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void update() {
+        if (keyHandler.escPressed) {
+            System.exit(0);
+        }
         if (keyHandler.leftPressed) {
             player.applyLeftMovement();
         }

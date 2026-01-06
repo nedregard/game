@@ -1,6 +1,6 @@
 package world.tiles;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 
 import graphics.sprites.SpriteHandler;
 import graphics.sprites.SpriteManager;
@@ -42,6 +42,8 @@ public class Tile {
         if (objectSprite != null) {
             g2.drawImage(objectSprite.getSprite(0, 0), x, y, null);
         }
+        g2.setColor(Color.BLUE);
+        g2.drawRect(x, y, 32, 32);
     }
 
     public TileType getGround() {

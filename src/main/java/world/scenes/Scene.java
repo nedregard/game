@@ -2,9 +2,9 @@ package world.scenes;
 
 import java.awt.Graphics2D;
 
+import world.tiles.TileType;
 import world.tiles.Tile;
 import world.tiles.TileObject;
-import world.tiles.TileType;
 
 public class Scene {
     private final int width;

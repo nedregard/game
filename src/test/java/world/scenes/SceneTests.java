@@ -16,7 +16,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import world.scenes.Scene;
 import world.tiles.Tile;
 import world.tiles.TileObject;
 import world.tiles.TileType;

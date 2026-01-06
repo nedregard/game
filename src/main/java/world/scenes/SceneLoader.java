@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import world.tiles.TileObject;
 import world.tiles.TileType;
+import world.tiles.TileObject;
 
 public class SceneLoader {
 

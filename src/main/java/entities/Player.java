@@ -1,6 +1,6 @@
 package entities;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class Player extends MovingEntity {
     private List<Projectile> projectiles = new ArrayList<>();
 
     public Player(WorldHandler world) {
-        super(32, 32, 5, 3, 8, world);
+        super(32, 32, 10, 3, 8, world);
         this.health = 100;
     }
 
@@ -34,6 +34,8 @@ public class Player extends MovingEntity {
         for (Projectile projectile : projectiles) {
             projectile.draw(g2);
         }
+        g2.setColor(Color.RED);
+        g2.drawRect(position[0], position[1], 32, 32);
     }
 
     private void updateProjectiles() {
