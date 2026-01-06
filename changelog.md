@@ -1,3 +1,4 @@
+- <b>06-01-2026 --- <.COMMIT></b> - Improved player movement
 - <b>05-01-2026 --- <.COMMIT></b> - Added MazeGenerator, json test-files
 - <b>26-12-2025 --- d723800</b> - Added SceneLoader
 - <b>26-12-2025 --- d723800</b> - Changed to full screen mode
